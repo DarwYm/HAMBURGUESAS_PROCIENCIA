@@ -70,8 +70,6 @@ section:nth-child(even){background:var(--white)}
 #inicio{min-height:100vh;background:var(--off-white);padding:0;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden}
 .hero-bg-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 18% 45%,rgba(27,114,184,0.16) 0%,transparent 45%),radial-gradient(circle at 85% 25%,rgba(35,178,198,0.09) 0%,transparent 40%),radial-gradient(circle at 65% 85%,rgba(44,124,160,0.06) 0%,transparent 50%)}
 .hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(35,178,198,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(35,178,198,0.045) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,rgba(0,0,0,0.7) 0%,transparent 75%)}
-.hero-spore{position:absolute;right:6%;top:50%;transform:translateY(-50%);width:min(460px,46vw);height:min(460px,46vw);opacity:0.5;animation:rotate 200s linear infinite}
-@keyframes rotate{from{transform:translateY(-50%) rotate(0)}to{transform:translateY(-50%) rotate(360deg)}}
 .hero-content{position:relative;z-index:2;flex:1;width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:150px 6% 70px;max-width:1200px}
 .hero-eyebrow{font-family:ui-monospace,"SF Mono",Menlo,Monaco,"Cascadia Mono",monospace;font-size:0.72rem;font-weight:500;color:var(--gold-dark);letter-spacing:0.2em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:28px;opacity:0;animation:fadeUp 0.8s 0.3s forwards}
 .hero-eyebrow::before{content:'';width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
@@ -406,18 +404,6 @@ footer{background:#F5F7FA;color:rgba(29,39,51,0.68);padding:60px 6% 30px}
 <section id="inicio">
   <div class="hero-bg-pattern"></div>
   <div class="hero-grid-lines"></div>
-  <svg class="hero-spore" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="none" stroke="#1B72B8" stroke-opacity="0.55">
-      <circle cx="200" cy="200" r="60" stroke-dasharray="2 9"/>
-      <circle cx="200" cy="200" r="105" stroke-dasharray="2 11"/>
-      <circle cx="200" cy="200" r="150" stroke-dasharray="2 13"/>
-      <circle cx="200" cy="200" r="190" stroke-dasharray="2 15"/>
-    </g>
-    <g fill="#23B2C6" fill-opacity="0.65">
-      <circle cx="200" cy="50" r="3"/><circle cx="320" cy="120" r="2.4"/><circle cx="330" cy="270" r="2.6"/>
-      <circle cx="200" cy="350" r="3"/><circle cx="80" cy="290" r="2.4"/><circle cx="70" cy="130" r="2.6"/>
-    </g>
-  </svg>
 
   <div class="hero-content">
     <div class="hero-eyebrow">Investigación Aplicada · Contrato N.° PE501083435-2023-PROCIENCIA</div>
