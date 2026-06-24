@@ -246,6 +246,11 @@ section:nth-child(even){background:var(--white)}
 .article-item:hover{border-color:var(--border-strong);box-shadow:var(--shadow-gold)}
 .article-year{flex-shrink:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Inter,sans-serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1;min-width:62px}
 .article-item.featured .article-year{background:linear-gradient(135deg,var(--gold),var(--gold-dark));-webkit-background-clip:text;background-clip:text;color:transparent;font-size:2.3rem}
+.article-side{flex-shrink:0;display:flex;flex-direction:column;gap:14px;width:120px}
+.article-item.featured .article-side{width:150px}
+.article-thumb{display:block;width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--gray-100);box-shadow:0 3px 14px rgba(20,60,100,.14);transition:.25s}
+.article-thumb img{width:100%;height:auto;display:block}
+.article-thumb:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(20,60,100,.22);border-color:var(--gold)}
 .article-content{flex:1;min-width:0}
 .article-tag-new{display:inline-block;font-size:0.62rem;font-weight:700;color:var(--black);background:linear-gradient(135deg,var(--gold-bright),var(--gold-pale));padding:3px 10px;border-radius:10px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px}
 .article-title{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Inter,sans-serif;font-size:1.2rem;font-weight:600;color:var(--black);margin-bottom:8px;line-height:1.4}
@@ -363,6 +368,29 @@ footer{background:#F5F7FA;color:rgba(29,39,51,0.68);padding:60px 6% 30px}
 .carousel-dot.active{background:var(--gold);width:26px;border-radius:4px}
 @media(max-width:1000px){.carousel-card{flex:0 0 calc((100% - 20px)/2)}}
 @media(max-width:700px){.carousel-card{flex:0 0 100%;height:260px}.carousel-arrow{width:40px;height:40px;font-size:1.3rem}}
+/* ─── ENLACES DE PERFIL (CTI Vitae · Scopus · ResearchGate) ─── */
+.research-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.research-links a{display:inline-flex;align-items:center;height:30px;padding:0 11px;border-radius:7px;background:#fff;border:1px solid var(--gray-100);font-size:0.68rem;font-weight:700;letter-spacing:0.01em;line-height:1;transition:.2s;white-space:nowrap}
+.research-links a:hover{border-color:var(--gold);box-shadow:0 3px 12px rgba(27,114,184,.14);transform:translateY(-1px)}
+.research-links .rl-cti{color:#6B7280}
+.research-links .rl-scopus{color:#E9711C}
+.research-links .rl-rg{color:#0B8A82}
+.research-links .rl-rg sup{font-size:0.62em;font-weight:700}
+.director-info .research-links{margin-top:18px}
+
+/* ─── DIFUSIÓN DE RESULTADOS ─── */
+.difusion-header{text-align:center;margin-bottom:56px}
+.difusion-header .section-tag{justify-content:center}
+.difusion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;max-width:1180px;margin:0 auto}
+.dif-card{background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--gray-100);box-shadow:0 4px 20px rgba(0,0,0,.06);transition:.35s;display:flex;flex-direction:column}
+.dif-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-deep);border-color:var(--border)}
+.dif-img{height:210px;background:var(--panel);position:relative;overflow:hidden}
+.dif-img img{width:100%;height:100%;object-fit:cover;display:block}
+.dif-flag{position:absolute;top:12px;left:12px;z-index:2;padding:5px 12px;border-radius:20px;background:rgba(26,18,12,.72);color:#fff;font-size:0.64rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;backdrop-filter:blur(6px)}
+.dif-body{padding:18px 22px 22px}
+.dif-type{font-size:0.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.dif-title{font-size:1rem;font-weight:600;color:var(--black);line-height:1.35;margin-bottom:5px}
+.dif-place{font-size:0.8rem;color:var(--text-secondary)}
 </style>
 </head>
 <body>
@@ -385,6 +413,7 @@ footer{background:#F5F7FA;color:rgba(29,39,51,0.68);padding:60px 6% 30px}
     <li><a href="#equipo">Equipo</a></li>
     <li><a href="#fases">Fases</a></li>
     <li><a href="#articulos">Artículos</a></li>
+    <li><a href="#difusion">Difusión</a></li>
     <li><a href="#galeria">Galería</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
@@ -396,6 +425,7 @@ footer{background:#F5F7FA;color:rgba(29,39,51,0.68);padding:60px 6% 30px}
   <a href="#equipo" onclick="toggleMenu()">Equipo</a>
   <a href="#fases" onclick="toggleMenu()">Fases</a>
   <a href="#articulos" onclick="toggleMenu()">Artículos</a>
+  <a href="#difusion" onclick="toggleMenu()">Difusión</a>
   <a href="#galeria" onclick="toggleMenu()">Galería</a>
 </div>
 </header>
@@ -517,27 +547,32 @@ footer{background:#F5F7FA;color:rgba(29,39,51,0.68);padding:60px 6% 30px}
       <div class="director-degree">PhD en Ciencia y Tecnología de Alimentos · Universidad Nacional de Moquegua</div>
       <p class="director-desc">Especialista en ciencia sensorial y del consumidor, líder del grupo SACS de la Escuela Profesional de Ingeniería Agroindustrial. Dirige el desarrollo del ingrediente funcional a partir de Pleurotus ostreatus y su aplicación en productos cárnicos saludables.</p>
       <span class="director-affil">UNAM · Moquegua, Perú</span>
+      <div class="research-links">
+        <a class="rl-cti" href="https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=17994" target="_blank" rel="noopener" title="CTI Vitae">CTI Vitae</a>
+        <a class="rl-scopus" href="https://www.scopus.com/authid/detail.uri?authorId=56255077000" target="_blank" rel="noopener" title="Scopus">Scopus</a>
+        <a class="rl-rg" href="https://www.researchgate.net/profile/Erick-Villa" target="_blank" rel="noopener" title="ResearchGate">R<sup>G</sup></a>
+      </div>
     </div>
   </div>
 
   <div class="inv-cat-title">Co-investigadores</div>
   <div class="students-grid reveal">
-    <div class="student-card"><div class="student-photo"><span class="student-badge">UNAM</span><img src="/NILS.jpg" alt="Dr. Nils Leander Huaman Castilla"></div><div class="student-body"><div class="student-name">Dr. Nils Leander Huaman Castilla</div><div class="student-program">Co-investigador · UNAM</div></div></div>
-    <div class="student-card"><div class="student-photo"><span class="student-badge">USP</span><img src="/MILAGROS.jpg" alt="MSc. Milagros Maribel Coaguila Gonza"></div><div class="student-body"><div class="student-name">MSc. Milagros Maribel Coaguila Gonza</div><div class="student-program">Co-investigadora · Universidade de São Paulo</div></div></div>
-    <div class="student-card"><div class="student-photo"><span class="student-badge">USP</span><img src="/CARMERN_CONTRERAS.jpg" alt="Dra. Carmen Josefina Contreras"></div><div class="student-body"><div class="student-name">Dra. Carmen Josefina Contreras</div><div class="student-program">Co-investigadora · Universidade de São Paulo</div></div></div>
-    <div class="student-card"><div class="student-photo"><span class="student-badge">UFSCar</span><img src="/MIRIAM.jpg" alt="Dra. Miriam Mabel Selani"></div><div class="student-body"><div class="student-name">Dra. Miriam Mabel Selani</div><div class="student-program">Co-investigadora · Univ. Federal de São Carlos</div></div></div>
-    <div class="student-card"><div class="student-photo"><span class="student-badge">UNJ</span><img src="/JUAN_DARIO.jpg" alt="Dr. Juan Darío Ríos Mera"></div><div class="student-body"><div class="student-name">Dr. Juan Darío Ríos Mera</div><div class="student-program">Co-investigador · Universidad Nacional de Jaén</div></div></div>
+    <div class="student-card"><div class="student-photo"><span class="student-badge">UNAM</span><img src="/NILS.jpg" alt="Dr. Nils Leander Huaman Castilla"></div><div class="student-body"><div class="student-name">Dr. Nils Leander Huaman Castilla</div><div class="student-program">Co-investigador · UNAM</div><div class="research-links"><a class="rl-cti" href="https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=0003540" target="_blank" rel="noopener" title="CTI Vitae">CTI Vitae</a><a class="rl-scopus" href="https://www.scopus.com/authid/detail.uri?authorId=57195225277" target="_blank" rel="noopener" title="Scopus">Scopus</a><a class="rl-rg" href="https://www.researchgate.net/profile/Nils-Huaman" target="_blank" rel="noopener" title="ResearchGate">R<sup>G</sup></a></div></div></div>
+    <div class="student-card"><div class="student-photo"><span class="student-badge">USP</span><img src="/MILAGROS.jpg" alt="MSc. Milagros Maribel Coaguila Gonza"></div><div class="student-body"><div class="student-name">MSc. Milagros Maribel Coaguila Gonza</div><div class="student-program">Co-investigadora · Universidade de São Paulo</div><div class="research-links"><a class="rl-cti" href="https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=0173904" target="_blank" rel="noopener" title="CTI Vitae">CTI Vitae</a><a class="rl-scopus" href="https://www.scopus.com/authid/detail.uri?authorId=59662606600" target="_blank" rel="noopener" title="Scopus">Scopus</a><a class="rl-rg" href="https://www.researchgate.net/scientific-contributions/Milagros-Maribel-Coaguila-Gonza-2265323132" target="_blank" rel="noopener" title="ResearchGate">R<sup>G</sup></a></div></div></div>
+    <div class="student-card"><div class="student-photo"><span class="student-badge">USP</span><img src="/CARMERN_CONTRERAS.jpg" alt="Dra. Carmen Josefina Contreras"></div><div class="student-body"><div class="student-name">Dra. Carmen Josefina Contreras</div><div class="student-program">Co-investigadora · Universidade de São Paulo</div><div class="research-links"><a class="rl-cti" href="https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=95411" target="_blank" rel="noopener" title="CTI Vitae">CTI Vitae</a><a class="rl-scopus" href="https://www.scopus.com/authid/detail.uri?authorId=14036778400" target="_blank" rel="noopener" title="Scopus">Scopus</a><a class="rl-rg" href="https://www.researchgate.net/profile/Carmen-Contreras-Castillo" target="_blank" rel="noopener" title="ResearchGate">R<sup>G</sup></a></div></div></div>
+    <div class="student-card"><div class="student-photo"><span class="student-badge">UFSCar</span><img src="/MIRIAM.jpg" alt="Dra. Miriam Mabel Selani"></div><div class="student-body"><div class="student-name">Dra. Miriam Mabel Selani</div><div class="student-program">Co-investigadora · Univ. Federal de São Carlos</div><div class="research-links"><a class="rl-scopus" href="https://www.scopus.com/authid/detail.uri?authorId=36971134000" target="_blank" rel="noopener" title="Scopus">Scopus</a><a class="rl-rg" href="https://www.researchgate.net/profile/Miriam-Selani" target="_blank" rel="noopener" title="ResearchGate">R<sup>G</sup></a></div></div></div>
+    <div class="student-card"><div class="student-photo"><span class="student-badge">UNJ</span><img src="/JUAN_DARIO.jpg" alt="Dr. Juan Darío Ríos Mera"></div><div class="student-body"><div class="student-name">Dr. Juan Darío Ríos Mera</div><div class="student-program">Co-investigador · Universidad Nacional de Jaén</div><div class="research-links"><a class="rl-cti" href="https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=46996" target="_blank" rel="noopener" title="CTI Vitae">CTI Vitae</a><a class="rl-scopus" href="https://www.scopus.com/authid/detail.uri?authorId=57194078983" target="_blank" rel="noopener" title="Scopus">Scopus</a><a class="rl-rg" href="https://www.researchgate.net/profile/Juan-Rios-Mera" target="_blank" rel="noopener" title="ResearchGate">R<sup>G</sup></a></div></div></div>
   </div>
 
   <div class="inv-cat-title">Gestión del proyecto</div>
   <div class="students-grid reveal">
-    <div class="student-card"><div class="student-photo"><span class="student-badge">UNAM</span><div class="ph"><div class="ph-ic">📋</div></div></div><div class="student-body"><div class="student-name">Sherida Consuelo Vargas Cabrera</div><div class="student-program">Gestora de proyecto · UNAM</div></div></div>
+    <div class="student-card"><div class="student-photo"><span class="student-badge">UNAM</span><img src="/SHERIDA.jpg" alt="Sherida Consuelo Vargas Cabrera"></div><div class="student-body"><div class="student-name">Sherida Consuelo Vargas Cabrera</div><div class="student-program">Gestora de proyecto · UNAM</div></div></div>
   </div>
 
   <div class="inv-cat-title">Tesistas de maestría</div>
   <div class="students-grid reveal">
-    <div class="student-card"><div class="student-photo"><span class="student-badge tesista">Maestría</span><div class="ph"><div class="ph-ic">🎓</div></div></div><div class="student-body"><div class="student-name">Justa Salome Mamani Pari</div><div class="student-program">Tesista de maestría · UNAM</div></div></div>
-    <div class="student-card"><div class="student-photo"><span class="student-badge tesista">Maestría</span><div class="ph"><div class="ph-ic">🎓</div></div></div><div class="student-body"><div class="student-name">Hernando Vidal Gómez Nina</div><div class="student-program">Tesista de maestría · UNAM</div></div></div>
+    <div class="student-card"><div class="student-photo"><span class="student-badge tesista">Maestría</span><img src="/SALOME.jpg" alt="Justa Salome Mamani Pari"></div><div class="student-body"><div class="student-name">Justa Salome Mamani Pari</div><div class="student-program">Tesista de maestría · UNAM</div></div></div>
+    <div class="student-card"><div class="student-photo"><span class="student-badge tesista">Maestría</span><img src="/Vidal.jpg" alt="Hernando Vidal Gómez Nina"></div><div class="student-body"><div class="student-name">Hernando Vidal Gómez Nina</div><div class="student-program">Tesista de maestría · UNAM</div></div></div>
   </div>
 </section>
 
@@ -607,6 +642,34 @@ footer{background:#F5F7FA;color:rgba(29,39,51,0.68);padding:60px 6% 30px}
   <p class="pub-note">Producción científica del proyecto y del grupo de investigación. Cada referencia enlaza a su DOI oficial.</p>
 </section>
 
+<!-- ═══ DIFUSIÓN DE RESULTADOS ═══ -->
+<section id="difusion">
+  <div class="difusion-header reveal">
+    <div class="section-tag" style="justify-content:center">Difusión de resultados</div>
+    <h2 class="section-title">Presentación de resultados</h2>
+    <p class="section-desc" style="margin:0 auto;text-align:center">Los avances del proyecto se difundieron en tres ponencias internacionales y una réplica institucional en la UNAM.</p>
+  </div>
+
+  <div class="difusion-grid reveal">
+    <div class="dif-card">
+      <div class="dif-img"><span class="dif-flag">🇫🇷 Francia</span><img src="/DIFUSION_FRANCIA.jpg" alt="Ponencia de difusión de resultados en Francia"></div>
+      <div class="dif-body"><div class="dif-type">Ponencia internacional</div><div class="dif-title">Difusión de resultados</div><div class="dif-place">Francia</div></div>
+    </div>
+    <div class="dif-card">
+      <div class="dif-img"><span class="dif-flag">🇧🇷 Brasil</span><img src="/DISUSION_BRASIL.jpg" alt="Ponencia de difusión de resultados en Brasil"></div>
+      <div class="dif-body"><div class="dif-type">Ponencia internacional</div><div class="dif-title">Difusión de resultados</div><div class="dif-place">Brasil</div></div>
+    </div>
+    <div class="dif-card">
+      <div class="dif-img"><span class="dif-flag">🇪🇸 España</span><div class="ph"><div class="ph-ic">🎤</div><div class="ph-tag">Foto</div><div class="ph-cap">Ponencia en España</div></div></div>
+      <div class="dif-body"><div class="dif-type">Ponencia internacional</div><div class="dif-title">Difusión de resultados</div><div class="dif-place">España</div></div>
+    </div>
+    <div class="dif-card">
+      <div class="dif-img"><span class="dif-flag">🇵🇪 Moquegua</span><div class="ph"><div class="ph-ic">🏛️</div><div class="ph-tag">Foto</div><div class="ph-cap">Réplica en la UNAM</div></div></div>
+      <div class="dif-body"><div class="dif-type">Réplica institucional</div><div class="dif-title">Réplica de resultados en la UNAM</div><div class="dif-place">Moquegua, Perú</div></div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ 8. GALERÍA ═══ -->
 <section id="galeria">
   <div class="gallery-header reveal">
@@ -625,8 +688,6 @@ footer{background:#F5F7FA;color:rgba(29,39,51,0.68);padding:60px 6% 30px}
         <div class="carousel-card"><img src="/GENERACION_DE_ATRIBUTOS.jpg" alt="Generación de atributos sensoriales"></div>
         <div class="carousel-card"><img src="/MUESTRAS_PARA_SENSORIAL.jpg" alt="Muestras para el análisis sensorial"></div>
         <div class="carousel-card"><img src="/CONSUMIDORES.jpg" alt="Panel de consumidores"></div>
-        <div class="carousel-card"><img src="/DIFUSION_FRANCIA.jpg" alt="Difusión de resultados en Francia"></div>
-        <div class="carousel-card"><img src="/DISUSION_BRASIL.jpg" alt="Difusión de resultados en Brasil"></div>
       </div>
     </div>
     <button class="carousel-arrow" onclick="moveCarousel(1)" aria-label="Siguiente">&#8250;</button>
@@ -651,6 +712,7 @@ footer{background:#F5F7FA;color:rgba(29,39,51,0.68);padding:60px 6% 30px}
       <a href="#equipo">Equipo</a>
       <a href="#fases">Fases</a>
       <a href="#articulos">Artículos</a>
+      <a href="#difusion">Difusión</a>
     </div>
     <div class="footer-col">
       <h4>Institución</h4>
@@ -739,11 +801,27 @@ var articles=[
    badges:[["Proceeding","badge-pub"],["MDPI","badge-pub"]],
    doi:"10.3390/Foods2023-15039"}
 ];
+// primera página (PDF) de cada artículo, por DOI
+var artImgs={
+  "10.1016/j.meatsci.2025.110029":"/cap-stipe.png",
+  "10.1016/j.meatsci.2026.110156":"/sodium-warning.png",
+  "10.1016/j.afres.2026.102181":"/soy-burgers.png",
+  "10.1016/j.afres.2026.101884":"/plant-based.png",
+  "10.3390/compounds5030029":"/emerging-tech.png",
+  "10.3390/agriculture15101061":"/consumer-right.png",
+  "10.3390/foods13132110":"/amazon-fruits.png",
+  "10.3390/foods13111619":"/pijuayo-fat.png",
+  "10.1007/s44187-024-00184-7":"/salt-reduction.png",
+  "10.17268/sci.agropecu.2024.019":"/quinoa-sensory.png",
+  "10.1007/s43555-024-00027-7":"/application-sensory.png",
+  "10.3390/Foods2023-15039":"/pijuayo-partial.png"
+};
 var list=document.getElementById("articlesList");
 articles.forEach(function(a){
   var el=document.createElement("div");
   el.className="article-item reveal"+(a.featured?" featured":"");
-  var s='<div class="article-year">'+a.year+'</div><div class="article-content">';
+  var img=artImgs[a.doi];
+  var s='<div class="article-side"><div class="article-year">'+a.year+'</div>'+(img?'<a class="article-thumb" href="https://doi.org/'+a.doi+'" target="_blank" rel="noopener"><img src="'+img+'" alt="Primera página del artículo" loading="lazy"></a>':'')+'</div><div class="article-content">';
   if(a.featured) s+='<span class="article-tag-new">★ Publicación reciente</span>';
   if(a.title) s+='<div class="article-title">'+a.title+'</div>';
   else s+='<div class="article-title placeholder">[ Completar título y autores del artículo ]</div>';
